@@ -1,0 +1,12 @@
+<%- include('../partials/header') %>
+<div class="container">
+    <% item.forEach(item => { %>
+    <h3><%= item.articleName %></h3>
+    <img src="<%= item.image %>" class="img-fluid img-head">
+    <p>Topic: <%= item.topic %></p>
+    <p><%= item.description.substring(0, 200) %>...</p>
+    <a href="/article/<%= item._id %>">Read More</a>
+    <hr>
+    <% }) %>
+</div>
+<%- include('../partials/footer') %>

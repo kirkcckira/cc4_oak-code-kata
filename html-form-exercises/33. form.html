@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- ทำหน้า Form Register -->
+    <h1>Create an Account</h1>
+    <form>
+        <p>
+            <label for="email">Email:</label>
+            <br>
+            <input name="email" type="text" id="email">
+        </p>
+        <p>
+            <br>
+            <label for="password">Password:</label>
+            <br>
+            <input name="password" type="password" id="password">
+        </p>
+        <p>
+            <label for="age">Age:</label>
+            <br>
+            <select id="age">
+                <option value="">Choose your age range</option>
+                <option value="under_18">Under 18</option>
+                <option value="group1">18 - 25</option>
+                <option value="group2">26 - 30</option>
+                <option value="group3">30 and over</option>
+            </select>
+        </p>
+        <p>
+            <label for="textbox">Tell us about yourself:</label>
+            <br>
+            <textarea id="textbox" name="textbox" rows="8" cols="45"></textarea>
+        </p>
+        <p>
+            <input type="checkbox" name="agree" id="agree">
+            <label for="agree">I agree to the <a href="#">terms and service</a></label>
+        </p>
+        <input type="submit" value="Sign up">
+    </form>
+</body>
+
+</html>

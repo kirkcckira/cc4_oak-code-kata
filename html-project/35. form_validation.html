@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>A Simple Form</p>
+    <p><i>Form Fundamental</i></p>
+
+    <form>
+        <fieldset>
+            <legend>Customer Info</legend>
+            <p>
+                <label for="name">Name: </label><input type="text" placeholder="Enter Your Name" id="name" name="name"
+                    autofocus required>
+            </p>
+            <p>
+                <label for="tel">Telephone: </label><input type="text" placeholder="Pattern: 1-234-567-8910" id="tel"
+                    name="tel" required pattern="[0-9]{1}-[0-9]{3}-[0-9]{3}-[0-9]{4}">
+            </p>
+            <p>
+                <label for="email">Email address: </label><input type="text" placeholder="Enter your email address"
+                    id="email" name="email" required multiple>
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>Books</legend>
+            <input list="book" id="pick-book" name="pick-book">
+            <datalist id="book">
+                <option value="book1">
+                <option value="book2">
+                <option value="book3">
+                <option value="book4">
+                <option value="book5">
+            </datalist>
+            <label for="quantity">Quantity: </label><input type="number" min="1" max="5" id="quantity" name="quantity">
+        </fieldset>
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+
+</html>

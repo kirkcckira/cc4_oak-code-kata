@@ -1,0 +1,84 @@
+1. SELECT first_name ||' '|| last_name AS Full_Name, salary FROM employees WHERE salary < 6000;
+
+2. SELECT first_name, last_name, department_id, salary FROM employees WHERE salary > 8000;
+
+3. SELECT first_name, last_name, department_id FROM employees WHERE last_name = 'McEwen';
+
+4. SELECT * FROM employees WHERE department_id IS NULL;
+
+5. SELECT * FROM  departments WHERE department_name = 'Marketing';
+
+6. SELECT first_name || ' ' || last_name as Full_Name, hire_date, salary, department_id FROM employees WHERE first_name NOT LIKE '%M%' 
+ORDER BY department_id;
+
+7. SELECT * FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct IS NOT NULL
+OR  department_id NOT IN (40 , 120 , 70) AND   hire_date < '1987-06-05'
+
+8. SELECT first_name ||' '|| last_name AS Full_Name, salary FROM employees WHERE commission_pct IS NULL;
+
+9. SELECT first_name ||' '|| last_name AS Full_Name, phone_number ||' - '|| email AS Contact_Details,
+salary AS Remuneration FROM employees WHERE salary BETWEEN 9000 AND 17000;
+
+10. SELECT first_name, last_name, salary  FROM employees WHERE first_name LIKE '%m';
+
+11. SELECT first_name || ' ' || last_name as Name, salary FROM  employees 
+WHERE salary NOT BETWEEN 7000 AND 15000 ORDER BY first_name || ' ' || last_name;
+
+12. SELECT first_name ||' '|| last_name AS Full_Name, job_id, hire_date FROM employees 
+WHERE hire_date BETWEEN '2007-11-05' AND '2009-07-05';
+
+13. SELECT first_name ||' '|| last_name AS Full_Name, department_id FROM employees 
+WHERE department_id = 70 OR department_id = 90;
+
+14. SELECT first_name ||' '|| last_name AS Full_Name, salary, manager_id FROM employees WHERE manager_id IS NOT NULL;
+
+15. SELECT * FROM employees WHERE hire_date < '2002-06-21';
+
+16. SELECT first_name, last_name, email, salary, manager_id FROM employees WHERE manager_id IN (120 , 103 , 145);
+
+17. SELECT * FROM employees WHERE first_name LIKE '%D%' OR first_name LIKE '%S%' 
+OR first_name LIKE '%N%' ORDER BY salary DESC;
+
+18. SELECT first_name ||' '||last_name AS Full_Name, hire_date, commission_pct, email ||' -  '|| phone_number AS Contact_Details, salary 
+FROM employees WHERE salary > 11000 OR phone_number LIKE '______3%'ORDER BY first_name DESC;
+
+19. SELECT first_name,last_name, department_id FROM employees WHERE first_name LIKE '__s%';
+
+20. SELECT employee_id, first_name, job_id, department_id FROM employees WHERE department_id NOT IN (50, 30, 80);
+
+21. SELECT employee_id, first_name, job_id, department_id FROM employees WHERE department_id IN (30 , 40 , 90);
+
+22. SELECT employee_id FROM job_history GROUP BY employee_id HAVING COUNT(*) >= 2;
+
+23. SELECT job_id, COUNT(*), SUM(salary), MAX(salary)-MIN(salary) AS salary_difference FROM employees GROUP BY job_id;
+
+24. SELECT job_id FROM job_history WHERE end_date-start_date >300 GROUP BY job_id HAVING COUNT(*) >=2;
+
+25. SELECT country_id, COUNT(*) FROM locations GROUP BY country_id;
+
+26. SELECT manager_id, COUNT(*) FROM employees GROUP BY manager_id;
+
+27. SELECT * FROM jobs ORDER BY job_title;
+
+28. SELECT first_name, last_name, hire_date FROM employees WHERE job_id IN ('SA_REP', 'SA_MAN');
+
+29. SELECT department_id, AVG(salary) FROM employees WHERE commission_pct IS NOT NULL GROUP BY department_id;
+
+30. SELECT DISTINCT department_id FROM employees GROUP BY department_id, manager_id HAVING COUNT(employee_id) >= 4;
+
+31. SELECT department_id FROM employees WHERE commission_pct IS NOT NULL 
+GROUP BY department_id HAVING COUNT(commission_pct) > 10;
+
+32. SELECT employee_id, MAX(end_date) FROM job_history GROUP BY employee_id;
+
+33. SELECT * FROM employees WHERE commission_pct IS NULL AND salary BETWEEN 7000 AND 12000 AND department_id = 50;
+
+34. SELECT job_id, AVG(salary) FROM employees GROUP BY job_id HAVING AVG(salary) > 8000;
+
+35. SELECT job_title, max_salary-min_salary AS salary_differences FROM jobs WHERE max_salary BETWEEN 12000 AND 18000;
+
+36. SELECT first_name, last_name FROM employees WHERE  first_name  LIKE 'D%' OR last_name LIKE 'D%';
+
+37. SELECT * FROM jobs WHERE min_salary > 9000;
+
+38. SELECT * FROM employees WHERE hire_date > '1987-09-07';

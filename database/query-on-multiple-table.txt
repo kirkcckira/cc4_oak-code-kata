@@ -1,0 +1,31 @@
+1. SELECT customer.cust_name, salesman.name, salesman.city FROM salesman, customer WHERE salesman.city = customer.city;
+
+2. SELECT customer.cust_name, salesman.name FROM customer,salesman WHERE salesman.salesman_id = customer.salesman_id;
+
+3.
+SELECT ord_no, cust_name, orders.customer_id, orders.salesman_id 
+FROM salesman, customer, orders WHERE customer.city <> salesman.city
+AND orders.customer_id = customer.customer_id
+AND orders.salesman_id = salesman.salesman_id;
+
+4. SELECT orders.ord_no, customer.cust_name FROM orders, customer WHERE orders.customer_id = customer.customer_id; 
+
+5. 
+SELECT customer.cust_name AS "Customer", customer.grade AS "Grade"
+FROM orders, salesman, customer WHERE orders.customer_id = customer.customer_id
+AND orders.salesman_id = salesman.salesman_id
+AND salesman.city IS NOT NULL
+AND customer.grade IS NOT NULL;
+
+6. 
+SELECT customer.cust_name AS "Customer", customer.city AS "City", salesman.name AS "Salesman", salesman.commission
+FROM customer,salesman WHERE customer.salesman_id = salesman.salesman_id
+AND salesman.commission BETWEEN .12 AND .14;
+
+7. 
+SELECT ord_no, cust_name, commission AS "Commission%", purch_amt*commission AS "Commission" 
+FROM salesman,orders,customer WHERE orders.customer_id = customer.customer_id
+AND orders.salesman_id = salesman.salesman_id
+AND customer.grade>=200;
+
+8. SELECT * FROM customer a,orders  b WHERE a.customer_id=b.customer_id AND b.ord_date='2012-10-05';

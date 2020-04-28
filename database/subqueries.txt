@@ -1,0 +1,138 @@
+1. SELECT * FROM orders 
+WHERE salesman_id =(
+SELECT salesman_id 
+FROM salesman 
+WHERE name = 'Paul Adam');
+
+2. SELECT *FROM orders
+WHERE salesman_id = (
+SELECT salesman_id 
+FROM salesman 
+WHERE city = 'London'
+);
+
+3. SELECT * FROM orders
+WHERE salesman_id =(
+SELECT DISTINCT salesman_id 
+FROM orders 
+WHERE customer_id = 3007
+);
+
+4. SELECT *FROM orders
+WHERE purch_amt >(
+SELECT  AVG(purch_amt) 
+FROM orders 
+WHERE ord_date = '10/10/2012'
+);
+
+5. SELECT *FROM orders
+WHERE salesman_id IN (
+SELECT salesman_id 
+FROM salesman 
+WHERE city ='New York'
+);
+
+6. SELECT commission FROM salesman
+WHERE salesman_id IN (
+SELECT salesman_id 
+     FROM customer
+     WHERE city = 'Paris');
+
+7. SELECT * FROM customer
+WHERE customer_id = (
+SELECT salesman_id -2001
+FROM salesman
+WHERE name = 'Mc Lyon');
+
+8. SELECT grade, COUNT (*) FROM customer
+GROUP BY grade 
+HAVING grade > (SELECT AVG(grade) FROM customer WHERE city = 'New York');
+
+9. SELECT ord_no, purch_amt, ord_date, salesman_id FROM orders WHERE salesman_id IN
+(
+SELECT salesman_id FROM salesman WHERE commission = (SELECT MAX(commission) FROM salesman)
+);
+
+10. SELECT b.*, a.cust_name FROM orders b, customer a WHERE a.customer_id = b.customer_id AND b.ord_date = '2012-08-17';
+
+11. SELECT salesman_id, name FROM salesman a WHERE 1 < (SELECT COUNT(*) 
+FROM customer WHERE salesman_id = a.salesman_id);
+
+12. SELECT * FROM orders a WHERE purch_amt > (SELECT AVG(purch_amt) 
+FROM orders b WHERE b.customer_id = a.customer_id);
+
+13. SELECT * FROM orders a WHERE purch_amt >= (SELECT AVG(purch_amt) 
+FROM orders b WHERE b.customer_id = a.customer_id);
+
+14. SELECT ord_date, SUM (purch_amt) FROM orders a
+GROUP BY ord_date HAVING SUM (purch_amt) >
+(SELECT 1000.00 + MAX(purch_amt) FROM orders b WHERE a.ord_date = b.ord_date);
+
+15. SELECT customer_id, cust_name, city FROM customer 
+WHERE EXISTS (SELECT * FROM customer WHERE city = 'London');
+
+16. SELECT * FROM salesman WHERE salesman_id IN (SELECT DISTINCT salesman_id FROM customer a 
+WHERE EXISTS (SELECT * FROM customer b WHERE b.salesman_id = a.salesman_id AND b.cust_name <> a.cust_name));
+
+17. SELECT * FROM salesman WHERE salesman_id IN (SELECT DISTINCT salesman_id FROM customer a 
+WHERE NOT EXISTS (SELECT * FROM customer b WHERE a.salesman_id=b.salesman_id AND a.cust_name<>b.cust_name));
+
+18. SELECT * FROM salesman a WHERE EXISTS     
+(SELECT * FROM customer b WHERE a.salesman_id=b.salesman_id AND 1 < (SELECT COUNT (*)              
+FROM orders WHERE orders.customer_id = b.customer_id));
+
+19. SELECT * FROM salesman WHERE city = ANY (SELECT city FROM customer);
+
+20. SELECT * FROM salesman WHERE city IN (SELECT city FROM customer);
+
+21. SELECT * FROM salesman a WHERE EXISTS (SELECT * FROM CUSTOMER b WHERE  a.name < b.cust_name);
+
+22. SELECT * FROM customer WHERE grade > ANY (SELECT grade FROM CUSTOMER WHERE  city < 'New York');
+
+23. SELECT * FROM Orders WHERE purch_amt > ANY (SELECT purch_amt FROM orders WHERE  ord_date = '2012/09/10');
+
+24. SELECT * FROM orders WHERE purch_amt < ANY 
+(SELECT purch_amt FROM orders a, customer b WHERE  a.customer_id = b.customer_id AND b.city = 'London');
+
+25. SELECT * FROM orders WHERE purch_amt < (SELECT MAX (purch_amt)
+FROM orders a, customer b WHERE a.customer_id = b.customer_id AND b.city = 'London');
+
+26. SELECT * FROM customer WHERE grade > ALL (SELECT grade FROM customer WHERE city = 'New York');
+
+27. SELECT * FROM customer WHERE grade > ALL (SELECT grade FROM customer WHERE city = 'New York');
+
+28. SELECT * FROM customer WHERE grade <> ANY (SELECT grade FROM customer WHERE city = 'London');
+
+29. SELECT * FROM customer WHERE grade NOT IN (SELECT grade FROM customer WHERE city = 'Paris');
+
+30. SELECT * FROM customer WHERE NOT grade = ANY (SELECT grade FROM customer WHERE city = 'Dallas');
+
+31. SELECT AVG(pro_price) AS "Average Price", company_mast.com_name As "Company"
+FROM item_mast, company_mast WHERE item_mast.pro_com = company_mast.com_id
+GROUP BY company_mast.com_name;
+
+32. SELECT AVG(pro_price) AS "Average Price", company_mast.com_name AS "Company"
+FROM item_mast, company_mast WHERE item_mast.pro_com = company_mast.com_id
+GROUP BY company_mast.com_name HAVING AVG(pro_price) >= 350;
+
+33. SELECT P.pro_name AS "Product Name", P.pro_price AS "Price", C.com_name AS "Company"
+FROM item_mast P, company_mast C WHERE P.pro_com = C.com_id AND P.pro_price =
+(SELECT MAX(P.pro_price) FROM item_mast P WHERE P.pro_com = C.com_id);
+
+34. SELECT * FROM emp_details WHERE emp_lname IN ('Gabriel' , 'Dosio');
+
+35. SELECT * FROM emp_details WHERE emp_dept IN (89,63);
+
+36. SELECT emp_fname, emp_lname FROM emp_details WHERE emp_dept IN
+(SELECT dpt_code FROM emp_department WHERE dpt_allotment > 50000);
+
+37. SELECT * FROM emp_department WHERE dpt_allotment >
+(SELECT AVG(dpt_allotment) FROM emp_department);
+
+38. SELECT dpt_name FROM emp_department WHERE dpt_code IN
+(SELECT emp_dept FROM emp_details GROUP BY emp_dept HAVING COUNT(*) >2);
+
+39. SELECT emp_fname, emp_lname FROM emp_details WHERE emp_dept IN (
+SELECT dpt_code FROM emp_department WHERE dpt_allotment = 
+(SELECT MIN(dpt_allotment) FROM emp_department WHERE dpt_allotment > 
+(SELECT MIN(dpt_allotment) FROM emp_department )));

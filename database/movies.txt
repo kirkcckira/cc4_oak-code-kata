@@ -1,0 +1,20 @@
+1. SELECT mov_title, mov_year FROM movie;
+
+2. SELECT mov_year FROM movie WHERE mov_title = 'American Beauty';
+
+3. SELECT mov_title FROM movie WHERE mov_year = 1999;
+
+4. SELECT mov_title FROM movie WHERE mov_year < 1998;
+
+5. SELECT reviewer.rev_name FROM reviewer UNION (SELECT movie.mov_title FROM movie);
+
+6. SELECT reviewer.rev_name FROM reviewer, rating WHERE rating.rev_id = reviewer.rev_id
+AND rating.rev_stars >= 7 AND reviewer.rev_name IS NOT NULL;
+
+7. SELECT mov_title FROM movie WHERE mov_id NOT IN (SELECT mov_id FROM rating);
+
+8. SELECT mov_title FROM movie WHERE mov_id in (905, 907, 917);
+
+9. SELECT mov_id, mov_title, mov_year FROM movie WHERE mov_title LIKE '%Boogie%Nights%' ORDER BY mov_year ASC;
+
+10. SELECT act_id FROM actor WHERE act_fname='Woody' AND act_lname='Allen';
